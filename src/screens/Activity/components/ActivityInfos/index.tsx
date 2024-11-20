@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
-import * as S from "./style";
+import * as S from './style';
+import { imgs } from '../../../../assets/pngs';
 
 interface ActivityInfosProps {
   distance: number;
@@ -9,7 +9,6 @@ interface ActivityInfosProps {
 }
 
 const ActivityInfos: React.FC<ActivityInfosProps> = ({ distance, time, averagePace }) => {
-
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -18,26 +17,25 @@ const ActivityInfos: React.FC<ActivityInfosProps> = ({ distance, time, averagePa
 
   return (
     <S.Container>
-      <S.ActivityActions>
-          <Text style={styles.text}>Distância: {distance.toFixed(2)} km</Text>
-          <Text style={styles.text}>Tempo: {formatTime(time)}</Text>
-          <Text style={styles.text}>Ritmo Médio: {averagePace} min/km</Text>
-      </S.ActivityActions>
+      <S.Info>
+        <S.Title>Tempo</S.Title>
+        <S.Value>{formatTime(time)}</S.Value>
+        <S.Icon resizeMode='contain' source={imgs.photo} />
+      </S.Info>
+
+      <S.Info>
+        <S.Title>Distância</S.Title>
+        <S.ValueDistance highlight>{distance.toFixed(2)}</S.ValueDistance>
+        <S.Unit>km</S.Unit>
+      </S.Info>
+
+      <S.Info>
+        <S.Title>Ritmo médio</S.Title>
+        <S.Value>{averagePace}</S.Value>
+        <S.Unit>(min/km)</S.Unit>
+      </S.Info>
     </S.Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f5f5f5",
-  },
-  text: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-});
 
 export default ActivityInfos;
