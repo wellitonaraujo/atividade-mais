@@ -28,8 +28,8 @@ const ActivityControls: React.FC<ActivityControlsProps> = ({
         disabled={!isTracking}
       />
       
-      {/* Botão para Parar o rastreamento */}
-      <Button title="Parar" onPress={stopTracking} disabled={!isTracking || isPaused} />
+      {/* Botão Parar sempre ativo quando estiver rastreando */}
+      <Button title="Parar" onPress={stopTracking} disabled={!isTracking} />
     </View>
   );
 };
