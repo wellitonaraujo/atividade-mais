@@ -7,6 +7,7 @@ const useTracking = () => {
   const [time, setTime] = useState(0);
   const [averagePace, setAveragePace] = useState("00:00");
   const [isTracking, setIsTracking] = useState(false);
+  const [isPaused, setIsPaused] = useState(false); // Estado para controlar pausa
 
   const startTimeRef = useRef<Date | null>(null);
   const prevLocationRef = useRef<{ latitude: number; longitude: number } | null>(null);
@@ -15,7 +16,7 @@ const useTracking = () => {
     let interval: NodeJS.Timeout | null = null;
     let watchId: number | null = null;
 
-    if (isTracking) {
+    if (isTracking && !isPaused) { // Apenas atualiza se não estiver pausado
       startTimeRef.current = new Date();
       interval = setInterval(() => {
         setTime((prev) => prev + 1);
@@ -63,7 +64,7 @@ const useTracking = () => {
       if (interval) clearInterval(interval);
       if (watchId !== null) Geolocation.clearWatch(watchId);
     };
-  }, [isTracking, time]);
+  }, [isTracking, isPaused, time]);
 
   const startTracking = () => {
     setDistance(0);
@@ -71,10 +72,16 @@ const useTracking = () => {
     setAveragePace("00:00");
     prevLocationRef.current = null;
     setIsTracking(true);
+    setIsPaused(false); // Garante que o rastreamento começa do zero
   };
 
   const stopTracking = () => {
     setIsTracking(false);
+    setIsPaused(false); // Reseta o estado ao parar
+  };
+
+  const pauseTracking = () => {
+    setIsPaused((prev) => !prev); // Alterna entre pausado e não pausado
   };
 
   return {
@@ -82,8 +89,10 @@ const useTracking = () => {
     time,
     averagePace,
     isTracking,
+    isPaused,
     startTracking,
     stopTracking,
+    pauseTracking,
   };
 };
 

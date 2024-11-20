@@ -45,8 +45,8 @@ const Activity: React.FC = () => {
         />
          <S.ActivityControlsWrapper>
          <ActivityControls
-          isTracking={isTracking}
           isPaused={isPaused}
+          isTracking={isTracking}
           startTracking={startTracking}
           pauseTracking={pauseTracking}
           stopTracking={stopTracking}
