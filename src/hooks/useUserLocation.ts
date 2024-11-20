@@ -23,7 +23,7 @@ const useUserLocation = () => {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
         );
-        console.log(granted);  // Verifique o valor de 'granted'
+        console.log(granted);
         return granted === PermissionsAndroid.RESULTS.GRANTED;
       } catch (err) {
         console.warn("Erro ao solicitar permissão de localização:", err);
@@ -41,25 +41,23 @@ const useUserLocation = () => {
       return;
     }
 
-    // Obter a localização atual
     Geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
         setUserLocation({ latitude, longitude });
 
-        // Atualiza a região do mapa com a localização do usuário
         setRegion({
           latitude,
           longitude,
           latitudeDelta: 0.006,
           longitudeDelta: 0.006,
         });
-        setLoading(false); // Termina o carregamento
+        setLoading(false);
       },
       (error) => {
         console.error("Erro ao obter localização:", error);
         Alert.alert("Erro ao obter localização", error.message);
-        setLoading(false); // Mesmo em erro, finaliza o carregamento
+        setLoading(false);
       },
       {
         enableHighAccuracy: true,

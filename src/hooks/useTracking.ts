@@ -3,16 +3,17 @@ import Geolocation from "@react-native-community/geolocation";
 import haversine from "haversine";
 
 const useTracking = () => {
-  const [distance, setDistance] = useState(0); // Distância em km
-  const [time, setTime] = useState(0); // Tempo em segundos
-  const [averagePace, setAveragePace] = useState("00:00"); // Ritmo médio
-  const [isTracking, setIsTracking] = useState(false); // Estado de rastreamento
+  const [distance, setDistance] = useState(0);
+  const [time, setTime] = useState(0);
+  const [averagePace, setAveragePace] = useState("00:00");
+  const [isTracking, setIsTracking] = useState(false);
 
-  const startTimeRef = useRef<Date | null>(null); // Referência para tempo de início
-  const prevLocationRef = useRef<{ latitude: number; longitude: number } | null>(null); // Localização anterior
+  const startTimeRef = useRef<Date | null>(null);
+  const prevLocationRef = useRef<{ latitude: number; longitude: number } | null>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
+    let watchId: number | null = null;
 
     if (isTracking) {
       startTimeRef.current = new Date();
@@ -20,7 +21,7 @@ const useTracking = () => {
         setTime((prev) => prev + 1);
       }, 1000);
 
-      const watchId = Geolocation.watchPosition(
+      watchId = Geolocation.watchPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
           const currentLocation = { latitude, longitude };
@@ -31,15 +32,22 @@ const useTracking = () => {
               currentLocation,
               { unit: "km" }
             );
-            setDistance((prev) => prev + distanceBetweenPoints);
 
-            // Calculando o ritmo médio diretamente aqui
-            const pace = (time + 1) / ((distance + distanceBetweenPoints) * 60); // Ritmo em minutos por km
-            const minutes = Math.floor(pace);
-            const seconds = Math.floor((pace - minutes) * 60);
-            setAveragePace(
-              `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
-            );
+            setDistance((prevDistance) => {
+              const newDistance = prevDistance + distanceBetweenPoints;
+
+              // Atualiza o ritmo médio
+              if (newDistance > 0 && time > 0) {
+                const pace = time / (newDistance * 60); // minutos por km
+                const minutes = Math.floor(pace);
+                const seconds = Math.floor((pace - minutes) * 60);
+                setAveragePace(
+                  `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+                );
+              }
+
+              return newDistance;
+            });
           }
 
           prevLocationRef.current = currentLocation;
@@ -49,15 +57,13 @@ const useTracking = () => {
         },
         { enableHighAccuracy: true, distanceFilter: 1 }
       );
-
-      return () => {
-        if (interval) clearInterval(interval);
-        Geolocation.clearWatch(watchId);
-      };
-    } else if (interval) {
-      clearInterval(interval);
     }
-  }, [isTracking, time, distance]);
+
+    return () => {
+      if (interval) clearInterval(interval);
+      if (watchId !== null) Geolocation.clearWatch(watchId);
+    };
+  }, [isTracking, time]);
 
   const startTracking = () => {
     setDistance(0);
@@ -80,6 +86,5 @@ const useTracking = () => {
     stopTracking,
   };
 };
-
 
 export default useTracking;

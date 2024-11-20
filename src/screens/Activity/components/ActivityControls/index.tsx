@@ -1,23 +1,24 @@
-// src/components/ActivityControls.tsx
-import React from 'react';
 import { Button, View, StyleSheet } from 'react-native';
-import { useTrackingContext } from '../../../../context/TrackingContext';
+import React from 'react';
 
 interface ActivityControlsProps {
   isTracking: boolean;
   startTracking: () => void;
   stopTracking: () => void;
+  pauseTracking: () => void;
 }
 
-const ActivityControls: React.FC<ActivityControlsProps> = ({ isTracking, startTracking, stopTracking }) => {
-
+const ActivityControls: React.FC<ActivityControlsProps> = ({
+  isTracking,
+  startTracking,
+  stopTracking,
+  pauseTracking,
+}) => {
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: 20 }}>
-      {/* Botão para iniciar o rastreamento */}
-      <Button title="Iniciar Rastreamento" onPress={startTracking} disabled={isTracking} />
-
-      {/* Botão para parar o rastreamento */}
-      <Button title="Parar Rastreamento" onPress={stopTracking} disabled={!isTracking} />
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 2 }}>
+      <Button title="Iniciar" onPress={startTracking} disabled={isTracking} />
+      <Button title="Pausar" onPress={pauseTracking} disabled={!isTracking} />
+      <Button title="Parar" onPress={stopTracking} disabled={!isTracking} />
     </View>
   );
 };

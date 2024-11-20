@@ -1,6 +1,5 @@
-// src/components/ActivityInfos.tsx
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import * as S from "./style";
 
 interface ActivityInfosProps {
