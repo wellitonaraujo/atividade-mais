@@ -1,29 +1,31 @@
-import React from "react";
-import { Button, StyleSheet, View } from "react-native";
-import useTracking from "../../../../hooks/useTracking";
+// src/components/ActivityControls.tsx
+import React from 'react';
+import { Button, View, StyleSheet } from 'react-native';
+import { useTrackingContext } from '../../../../context/TrackingContext';
 
-const ActivityControls = () => {
-  const { isTracking, startTracking, stopTracking } = useTracking();
+interface ActivityControlsProps {
+  isTracking: boolean;
+  startTracking: () => void;
+  stopTracking: () => void;
+}
+
+const ActivityControls: React.FC<ActivityControlsProps> = ({ isTracking, startTracking, stopTracking }) => {
 
   return (
-    <View style={styles.container}>
-      {isTracking ? (
-        <Button title="Parar" onPress={stopTracking} />
-      ) : (
-        <Button title="Iniciar" onPress={startTracking} />
-      )}
+    <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: 20 }}>
+      {/* Botão para iniciar o rastreamento */}
+      <Button title="Iniciar Rastreamento" onPress={startTracking} disabled={isTracking} />
+
+      {/* Botão para parar o rastreamento */}
+      <Button title="Parar Rastreamento" onPress={stopTracking} disabled={!isTracking} />
     </View>
   );
 };
 
-export default ActivityControls;
-
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
     padding: 16,
-    height: 154,
   },
 });
+
+export default ActivityControls;

@@ -8,19 +8,21 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { StatusBar } from 'react-native';
-import AppNavigator from './src/navigation/AppNavigator';
+import { TrackingProvider } from './src/context/TrackingContext'; 
 import TabNavigator from './src/navigation/TabNavigator';
 
 function App(): React.JSX.Element {
 
   return (
+    <TrackingProvider>
     <NavigationContainer>
       <StatusBar
         barStyle={'dark-content'}
         backgroundColor={'#fff'}
       />
       <TabNavigator />
-      </NavigationContainer>
+    </NavigationContainer>
+  </TrackingProvider>
   );
 }
 

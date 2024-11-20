@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "715871266642",
+    "project_id": "atividademais-2bb24",
+    "storage_bucket": "atividademais-2bb24.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715871266642:android:c7503d98abd939b1137c8b",
+        "android_client_info": {
+          "package_name": "com.atividademais"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoA-nfFtYrGTxCVg5tIMZKUjcN9DQBMlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

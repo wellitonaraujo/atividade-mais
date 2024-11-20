@@ -1,13 +1,16 @@
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import useUserLocation from "../../hooks/useUserLocation";;
-import ActivityStart from "./components/ActivityStart";
+
 import React, { useEffect, useState } from "react";
 import * as S from "./style"
 import ActivityControls from "./components/ActivityControls";
+import ActivityInfos from "./components/ActivityInfos";
+import useTracking from "../../hooks/useTracking";
 
 const Activity: React.FC = () => {
   const { region, setRegion } = useUserLocation();
   const [isLoading, setIsLoading] = useState(true);
+  const { distance, time, averagePace, isTracking, stopTracking, startTracking } = useTracking();
 
   useEffect(() => {
     if (region.latitude !== 37.78825 && region.longitude !== -122.4324) {
@@ -22,7 +25,7 @@ const Activity: React.FC = () => {
   return (
     <S.Container>
          <S.ActivityStartWrapper>
-            <ActivityStart />
+         <ActivityInfos distance={distance} time={time} averagePace={averagePace} />
         </S.ActivityStartWrapper>
         <MapView
             provider={PROVIDER_GOOGLE}
@@ -33,7 +36,11 @@ const Activity: React.FC = () => {
             onRegionChangeComplete={(newRegion) => setRegion(newRegion)}
         />
          <S.ActivityControlsWrapper>
-            <ActivityControls />
+         <ActivityControls
+            isTracking={isTracking}
+            startTracking={startTracking}
+            stopTracking={stopTracking}
+         />
         </S.ActivityControlsWrapper>
     </S.Container>
 
