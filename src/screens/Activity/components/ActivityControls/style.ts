@@ -1,27 +1,45 @@
+import { Text, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
+import colors from "../../../../themes/colors";
 
-// Wrapper para ActivityInfos
-export const ActivityStartWrapper = styled.View`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 154px;
-  background-color: white;
-  padding: 0 26px;
-  z-index: 2; /* Para garantir que fique acima do mapa */
+
+export const ControlWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+`;
+
+export const Container = styled.View`
+  flex: 1;
+  background-color: #ffffff;
+  height: 160px;
+`;
+
+export const ControlButton = styled(TouchableOpacity)<{ color: string; disabled: boolean }>`
+  background-color: ${({ disabled, color }) => (disabled ? '#ccc' : color)};
+  width: 165px;
+  height: 36px;
+  border-radius: 5px;
+  align-items: center;
   justify-content: center;
 `;
 
-// Wrapper para ActivityControls
-export const ActivityControlsWrapper = styled.View`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 154px;
-  background-color: white;
-  padding: 0 26px;
-  justify-content: center;
-  z-index: 2; /* Para evitar sobreposição */
+export const ButtonText = styled(Text)`
+  color: #fff;
+  font-weight: bold;
 `;
 
-// Ícones e botões estilizados podem ser adicionados aqui caso precise!
+export const CircularButton = styled.TouchableOpacity`
+  background-color: ${colors.primary};
+  width: 70px;
+  height: 70px;
+  border-radius: 70px;
+  align-items: center;
+  justify-content: center;
+  bottom: 40px;
+`;
+
+export const Icon = styled.Image`
+  width: 18px;
+  height: 22px;
+`;

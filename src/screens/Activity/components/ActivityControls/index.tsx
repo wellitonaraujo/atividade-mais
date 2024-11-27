@@ -1,10 +1,11 @@
-import { Button, View, StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
+import * as S from './style';
+import colors from '../../../../themes/colors';
+import { imgs } from '../../../../assets/pngs';
 
 interface ActivityControlsProps {
   isTracking: boolean;
   isPaused: boolean;
-  startTracking: () => void;
   stopTracking: () => void;
   pauseTracking: () => void;
 }
@@ -12,32 +13,40 @@ interface ActivityControlsProps {
 const ActivityControls: React.FC<ActivityControlsProps> = ({
   isTracking,
   isPaused,
-  startTracking,
   stopTracking,
   pauseTracking,
 }) => {
+  const [areControlsEnabled, setAreControlsEnabled] = useState(true);
+
+  const toggleControls = () => {
+    setAreControlsEnabled((prevState) => !prevState);
+  };
+
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 2 }}>
-      {/* Botão para Iniciar o rastreamento */}
-      <Button title="Iniciar" onPress={startTracking} disabled={isTracking} />
-      
-      {/* Botão Pausar ou Continuar, dependendo do estado de pausa */}
-      <Button 
-        title={isPaused ? "Continuar" : "Pausar"} 
-        onPress={pauseTracking} 
-        disabled={!isTracking}
-      />
-      
-      {/* Botão Parar sempre ativo quando estiver rastreando */}
-      <Button title="Parar" onPress={stopTracking} disabled={!isTracking} />
-    </View>
+    <S.Container>
+      <S.ControlWrapper>
+        <S.ControlButton
+          onPress={pauseTracking}
+          color={colors.yellow400}
+          disabled={!isTracking || !areControlsEnabled}
+        >
+          <S.ButtonText>{isPaused ? "Continuar" : "Pausar"}</S.ButtonText>
+        </S.ControlButton>
+
+        <S.CircularButton onPress={toggleControls}>
+          <S.Icon source={imgs.padlock} />
+        </S.CircularButton>
+
+        <S.ControlButton
+          onPress={stopTracking} 
+          color={colors.red400}
+          disabled={!isTracking || !areControlsEnabled}
+        >
+          <S.ButtonText>Concluir</S.ButtonText>
+        </S.ControlButton>
+      </S.ControlWrapper>
+    </S.Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-});
 
 export default ActivityControls;
