@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { formatTimeComplet } from '../../utils/formatTime';
 
 interface ModalProps {
   visible: boolean;
@@ -31,20 +32,13 @@ const ActivityModal: React.FC<ModalProps> = ({ visible, onClose, distance, time,
     }
   };
 
-  const formatTime = (time: number) => {
-    const hours = Math.floor(time / 3600);
-    const minutes = Math.floor((time % 3600) / 60);
-    const seconds = time % 60;
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-  };
-
   return (
     <Modal visible={visible} transparent animationType="slide">
       <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)' }}>
         <View style={{ margin: 20, padding: 20, backgroundColor: 'white', borderRadius: 10 }}>
           <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 10 }}>Atividade Concluída</Text>
           <Text>Distância: {distance ? distance.toFixed(2) : '0.00'} km</Text>
-          <Text>Tempo: {formatTime(time)}</Text>
+          <Text>Tempo: {formatTimeComplet(time)}</Text>
           <Text>Ritmo médio: {averagePace} min/km</Text>
           <Text>Calorias: 212 Kcal (estático)</Text>
           <Text>Elevação: 43 m (estático)</Text>

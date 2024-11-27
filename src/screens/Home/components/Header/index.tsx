@@ -21,13 +21,13 @@ const Header: React.FC<HeaderProps> = ({ photo, name, onNotificationPress }) => 
         <S.NameText>{name}</S.NameText>
       </S.TextContainer>
 
-      <TouchableOpacity onPress={onNotificationPress}>
+      {/* <TouchableOpacity onPress={onNotificationPress}>
         <S.NotificationWrapper>
           <S.NotificationIcon>
             <S.NotificationBadge />
           </S.NotificationIcon>
         </S.NotificationWrapper>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </S.Container>
   );
 };

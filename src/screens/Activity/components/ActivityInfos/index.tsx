@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './style';
 import { imgs } from '../../../../assets/pngs';
+import { formatTime } from '../../../../utils/formatTime';
 
 interface ActivityInfosProps {
   distance: number;
@@ -9,11 +10,6 @@ interface ActivityInfosProps {
 }
 
 const ActivityInfos: React.FC<ActivityInfosProps> = ({ distance, time, averagePace }) => {
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-  };
 
   return (
     <S.Container>

@@ -12,7 +12,7 @@ export const ControlWrapper = styled.View`
 export const Container = styled.View`
   flex: 1;
   background-color: #ffffff;
-  height: 160px;
+  height: 140px;
 `;
 
 export const ControlButton = styled(TouchableOpacity)<{ color: string; disabled: boolean }>`
@@ -29,13 +29,13 @@ export const ButtonText = styled(Text)`
   font-weight: bold;
 `;
 
-export const CircularButton = styled.TouchableOpacity`
-  background-color: ${colors.primary};
+export const CircularButton = styled.TouchableOpacity<{ backgroundColor: string }>`
   width: 70px;
   height: 70px;
   border-radius: 70px;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.backgroundColor};
   bottom: 40px;
 `;
 
@@ -43,3 +43,5 @@ export const Icon = styled.Image`
   width: 18px;
   height: 22px;
 `;
+
+

@@ -19,6 +19,14 @@ export const StepCountText = styled.Text`
   color: #333;
 `;
 
+export const Title = styled.Text`
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 26px;
+  margin-bottom: 13px;
+`;
+
 export const ButtonContainer = styled.View`
   margin-top: 30px;
   align-items: center;
@@ -34,4 +42,28 @@ export const ButtonText = styled.Text`
   color: white;
   font-size: 16px;
   font-weight: bold;
+`;
+
+export const NoActivitiesContainer = styled.View`
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+`;
+
+export const NoActivitiesTitle = styled.Text`
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e1e1e;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+export const NoActivitiesButton = styled.View`
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #1e1e1e;
 `;

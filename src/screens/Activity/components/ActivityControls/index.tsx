@@ -16,27 +16,37 @@ const ActivityControls: React.FC<ActivityControlsProps> = ({
   stopTracking,
   pauseTracking,
 }) => {
-  const [areControlsEnabled, setAreControlsEnabled] = useState(true);
+  const [areControlsEnabled, setAreControlsEnabled] = useState(false);
+  const [isLocked, setIsLocked] = useState(true);
 
-  const toggleControls = () => {
-    setAreControlsEnabled((prevState) => !prevState);
-  };
+ 
+ const toggleControls = () => {
+  setAreControlsEnabled((prevState) => !prevState);
+};
 
+const toggleLock = () => {
+  setIsLocked((prevState) => !prevState); 
+  toggleControls(); 
+};
   return (
     <S.Container>
       <S.ControlWrapper>
         <S.ControlButton
           onPress={pauseTracking}
-          color={colors.yellow400}
+          color={isPaused ? "#4FAD6F" : "#FFC82D"} 
           disabled={!isTracking || !areControlsEnabled}
         >
           <S.ButtonText>{isPaused ? "Continuar" : "Pausar"}</S.ButtonText>
         </S.ControlButton>
 
-        <S.CircularButton onPress={toggleControls}>
-          <S.Icon source={imgs.padlock} />
+        <S.CircularButton 
+          onPress={toggleLock} 
+          backgroundColor={isLocked ? "#5235C3" : "#9F9F9F"}
+        >
+          <S.Icon 
+            source={isLocked ? imgs.padlock : imgs.padlockoff}
+          />
         </S.CircularButton>
-
         <S.ControlButton
           onPress={stopTracking} 
           color={colors.red400}

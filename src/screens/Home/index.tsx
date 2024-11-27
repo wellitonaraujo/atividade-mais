@@ -3,8 +3,11 @@ import Header from "./components/Header";
 import { imgs } from "../../assets/pngs";
 import * as S from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { FlatList, Text, View } from "react-native";
+import { FlatList } from "react-native";
 import RecentActivityCard from "../../components/RecentActivityCard";
+import Banner from "./components/Banner";
+import NoActivities from "../../components/NoActivities";
+import { useNavigation } from "@react-navigation/native";
 
 interface Activity {
   distance: string;
@@ -14,7 +17,7 @@ interface Activity {
 
 const Home: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
-
+  const navigation = useNavigation(); 
   const fetchActivities = async () => {
     try {
       const storedActivities = await AsyncStorage.getItem("activities");
@@ -29,6 +32,10 @@ const Home: React.FC = () => {
     fetchActivities();
   }, []);
 
+  const handleStartActivity = () => {
+    navigation.navigate("Activity")
+  };
+
   return (
     <S.Container>
       <Header
@@ -36,18 +43,21 @@ const Home: React.FC = () => {
         photo={imgs.user}
         onNotificationPress={() => console.log("Notificação clicada!")}
       />
-
-      <FlatList
-        data={activities}
-        keyExtractor={(item, index) => `${item.date}-${index}`}
-        renderItem={({ item }) => {
-          return (
-            <RecentActivityCard
-              item={item}
-            />
-          );
-        }}
-      />
+      <Banner onPress={handleStartActivity}/>
+      <S.Title>Atividades recentes</S.Title>
+      {activities.length === 0 ? (
+        <S.NoActivitiesContainer>
+          <NoActivities onPress={handleStartActivity} />
+        </S.NoActivitiesContainer>
+      ) : (
+        <FlatList
+          data={activities}
+          keyExtractor={(item, index) => `${item.date}-${index}`}
+          renderItem={({ item }) => (
+            <RecentActivityCard item={item} />
+          )}
+        />
+      )}
     </S.Container>
   );
 };

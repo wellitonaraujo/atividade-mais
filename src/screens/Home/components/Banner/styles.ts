@@ -34,7 +34,7 @@ export const WelcomeText = styled.Text`
 `;
 
 export const NameText = styled.Text`
-  font-size: 13px;
+  font-size: 16px;
   font-weight: bold;
   color: #000;
 `;
