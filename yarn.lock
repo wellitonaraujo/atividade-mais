@@ -6178,6 +6178,18 @@ react-is@^18.3.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
+react-native-background-fetch@~4.2.5:
+  version "4.2.5"
+  resolved "https://registry.npmjs.org/react-native-background-fetch/-/react-native-background-fetch-4.2.5.tgz"
+  integrity sha512-llOU+UWPd1fjOFGNGB4v4YrYaA0sMLn5hMk0aNx0Ok9+wQ2nQillVwj7G/XZEpIiD2vTVkntTNNXWycF5Ju0kQ==
+
+react-native-background-geolocation@^4.17.6:
+  version "4.17.6"
+  resolved "https://registry.npmjs.org/react-native-background-geolocation/-/react-native-background-geolocation-4.17.6.tgz"
+  integrity sha512-oLCRhIZg26cAKXnaxJBB3NiwedR3XawJVBxDVxuGj4W+3WZ/GONJ21/0w3JWf1145sdZdq/wNAiLM4ajkZg0EA==
+  dependencies:
+    react-native-background-fetch "~4.2.5"
+
 react-native-device-info@^14.0.0:
   version "14.0.0"
   resolved "https://registry.npmjs.org/react-native-device-info/-/react-native-device-info-14.0.0.tgz"
