@@ -6,7 +6,8 @@ export const Container = styled.View`
   align-items: center;
   background-color: #ffffff;
   padding: 20px 16px;
-  border-radius: 12px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 `;
 
 export const Info = styled.View`

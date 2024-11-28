@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import { imgs } from "../../assets/pngs";
 import * as S from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import RecentActivityCard from "../../components/RecentActivityCard";
 import Banner from "./components/Banner";
 import NoActivities from "../../components/NoActivities";

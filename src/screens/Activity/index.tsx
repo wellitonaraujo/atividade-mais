@@ -76,6 +76,7 @@ const Activity: React.FC = () => {
         showsUserLocation={true}
         loadingEnabled
         onRegionChangeComplete={(newRegion) => setRegion(newRegion)}
+        mapType='satellite'
       />
 
       <S.ActivityControlsWrapper>

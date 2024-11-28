@@ -1,7 +1,5 @@
 import { Text, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import colors from "../../../../themes/colors";
-
 
 export const ControlWrapper = styled.View`
   flex-direction: row;
@@ -12,14 +10,16 @@ export const ControlWrapper = styled.View`
 export const Container = styled.View`
   flex: 1;
   background-color: #ffffff;
-  height: 140px;
+  height: 150px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px
 `;
 
 export const ControlButton = styled(TouchableOpacity)<{ color: string; disabled: boolean }>`
   background-color: ${({ disabled, color }) => (disabled ? '#ccc' : color)};
   width: 165px;
-  height: 36px;
-  border-radius: 5px;
+  height: 48px;
+  border-radius: 48px;
   align-items: center;
   justify-content: center;
 `;
