@@ -8,12 +8,12 @@ export const NoActivitiesContainer = styled.View`
 export const NoActivitiesTitle = styled.Text`
   font-size: 13px;
   font-weight: 600;
-  color: #000;
+  color: #1E1E1E;
   text-align: center;
 `;
 
 export const NoActivitiesButton = styled.View`
-  width: 120px;
+  width: 140px;
   height: 48px;
   background-color: #5235C3;
   border-radius: 25px;
@@ -24,7 +24,7 @@ export const NoActivitiesButton = styled.View`
 `;
 
 export const Icon = styled.Image`
-  width: 19px;
+  width: 20px;
   height: 20px;
   margin: 5px;
 `

@@ -1,20 +1,19 @@
+import { ImageSourcePropType, TouchableOpacity } from "react-native";
+import * as S from "./styles";;
 import React from "react";
-import { Text, TouchableOpacity, Image } from "react-native";
-import * as S from "./styles"; // Certifique-se de que os estilos estão importados corretamente
-import { imgs } from "../../assets/pngs"; // Ou o caminho correto da sua imagem
-
 interface NoActivitiesProps {
-  onPress: () => void; // A função que será chamada quando o botão for pressionado
+  onPress: () => void;
+  icon: ImageSourcePropType
+  title: string
 }
 
-const NoActivities: React.FC<NoActivitiesProps> = ({ onPress }) => {
+const NoActivities: React.FC<NoActivitiesProps> = ({ onPress, icon, title }) => {
   return (
     <S.NoActivitiesContainer>
-        <S.NoActivitiesTitle>Que tal dar o primeiro passo hoje?</S.NoActivitiesTitle>
         <TouchableOpacity onPress={onPress}>
             <S.NoActivitiesButton>
-            <S.Icon source={imgs.tennis} />
-            <S.Title>Começar</S.Title>
+            <S.Icon source={icon} />
+            <S.Title>{title}</S.Title>
             </S.NoActivitiesButton>
         </TouchableOpacity>
     </S.NoActivitiesContainer>

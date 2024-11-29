@@ -10,5 +10,17 @@ export const imgs = {
     tennis: require('./icons/tennis.png'),
     walk: require('./icons/walk.png'),
     pedal: require('./icons/pedal.png'),
+
+    runprimary: require('./icons/runprimary.png'),
+    share: require('./icons/share.png'),
+    trash: require('./icons/trash.png'),
+
+    calories: require('./icons/calories.png'),
+    elevation: require('./icons/elevation.png'),
+    speed: require('./icons/speed.png'),
+    time: require('./icons/time.png'),
+
+    trophy: require('./imgs/trophy.png'),
+    trophyIcon: require('./icons/trophy-icon.png'),
   };
   

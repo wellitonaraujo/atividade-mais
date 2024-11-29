@@ -1,3 +1,4 @@
+import { moderateScale, verticalScale } from "../../../../utils/metrics";
 import { Text, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
@@ -9,17 +10,17 @@ export const ControlWrapper = styled.View`
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #ffffff;
-  height: 150px;
+  background-color: #fff;
+  height: ${verticalScale(130)}px;
   border-top-right-radius: 20px;
-  border-top-left-radius: 20px
+  border-top-left-radius: 20px;
 `;
 
 export const ControlButton = styled(TouchableOpacity)<{ color: string; disabled: boolean }>`
   background-color: ${({ disabled, color }) => (disabled ? '#ccc' : color)};
-  width: 165px;
-  height: 48px;
-  border-radius: 48px;
+  width: ${moderateScale(130)}px;
+  height: ${moderateScale(40)}px;
+  border-radius: ${moderateScale(48)}px;
   align-items: center;
   justify-content: center;
 `;

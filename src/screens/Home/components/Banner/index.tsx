@@ -25,7 +25,7 @@ const Banner: React.FC<Banner> = ({onPress}) => {
 
 const BannerContainer = styled.View`
   height: 137px;
-  border-radius: 4px;
+  border-radius: 12px;
   background-color: #1e1e1e;
   flex-direction: row;
   align-items: center;
@@ -46,7 +46,7 @@ const Title = styled.Text`
 
 const Button = styled(TouchableOpacity)`
   width: 133px;
-  height: 51px;
+  height: 40px;
   background-color: white;
   border-radius: 51px;
   justify-content: center;
